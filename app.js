@@ -20,10 +20,11 @@ title:String,
 content:String
 
 }
-
-
 const Article= mongoose.model("Article",articleSchema);
 
+
+
+// <----------------------GET REQUEST VERB------------------------->
 app.get("/articles",(req,res)=>{
 
  Article.find({},(err,foundArticles)=>{
@@ -39,6 +40,7 @@ app.get("/articles",(req,res)=>{
 })
 
 
+// <----------------------POST REQUEST VERB------------------------->
 
 app.post("/articles",(req,res)=>{
 
@@ -60,10 +62,27 @@ res.send(err);
   });
 
 
+})
+
+
+
+// <----------------------DELETE REQUEST VERB------------------------->
+
+app.delete("/articles",(req,res)=>{
+
+Article.deleteMany((err)=>{
+
+if(!err)
+console.log("Successfully Deleted All the Articles");
+else
+console.log(err);
+
 
 })
 
 
+
+})
 
 
 
